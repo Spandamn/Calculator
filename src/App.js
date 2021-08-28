@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Maths from './components/Maths'
+import Fields from './components/Fields'
+import Buttons from './components/Buttons'
 
 function App() {
+  let state = {
+    a: {},
+    b: {},
+    sign: '+'
+  };
+  function onButtonClick (e) {
+    state.sign = e.target.id;
+  }
+  function onChange (e) {
+    let v = e.target.id;
+    state[v] = e.target.value;
+    App.div.Maths = <Maths state={state}/>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Fields id='a' onChange={onChange}/> <br></br> <Buttons onClick={onButtonClick}/> <br></br> <Fields id='b' onChange={onChange}/> = <Maths />
     </div>
   );
 }
