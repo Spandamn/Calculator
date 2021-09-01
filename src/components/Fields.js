@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
 const Fields = (props) => {
-        return (<input id={props.id} type='string' onChange={props.onChange}></input>)
+        const [field1, set]
+        return (<input id={props.id} type='string' onChange={}></input>)
 }
 
 export default Fields

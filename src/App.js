@@ -1,25 +1,24 @@
-import Maths from './components/Maths'
-import Fields from './components/Fields'
-import Buttons from './components/Buttons'
+//import Maths from './components/Maths'
+//import Buttons from './components/Buttons'
+import Keypad from './components/Keypad'
+import Display from './components/Display'
+import { useState } from "react"
 
 function App() {
-  let state = {
-    a: {},
-    b: {},
-    sign: '+'
-  };
-  function onButtonClick (e) {
-    state.sign = e.target.id;
+  const [display, setDisplay] = useState([])
+  const onKeyPress = function (e) {
+    setDisplay([...display, e.target.id]);
   }
-  function onChange (e) {
-    let v = e.target.id;
-    state[v] = e.target.value;
-    App.div.Maths = <Maths state={state}/>;
+  const onKeyDel = function (e) {
+    setDisplay(display.splice(0, display.length - 1));
   }
-
   return (
     <div className='App'>
-      <Fields id='a' onChange={onChange}/> <br></br> <Buttons onClick={onButtonClick}/> <br></br> <Fields id='b' onChange={onChange}/> = <Maths />
+    {/*<input type='number' id='a' onChange={(e) => setA(e.target.value)}/> <br></br> 
+      <Buttons onClick={onButtonClick}/> <br></br>
+     <input type='number' id='b' onChange={(e) => setB(e.target.value)}/> = <Maths props={[a, b, sign]}/>*/}
+     <Display  display={display}/>
+     <Keypad onKeyDel={onKeyDel} onKeyPress={onKeyPress}/>
     </div>
   );
 }
